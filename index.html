@@ -20,33 +20,59 @@
 <body>
 <h1>Pop Rush</h1>
 <p><strong>Pop Rush</strong> is a fast, colorful arcade reflex game for Android — pop the called color, keep the combo alive, and play across Time Attack, Survival, Instinct, a 100-stage Journey campaign, and local split-screen Versus. It's free, with optional online leaderboards and Squads. Questions or support: <a href="mailto:rlstudio.dev@gmail.com">rlstudio.dev@gmail.com</a>.</p>
-<p class="meta">The rest of this page is the app's <strong>Privacy Policy</strong>. Effective date: 16 July 2026 · App: Pop Rush (<code>com.rlinteractive.poprush</code>) · Contact: <a href="mailto:rlstudio.dev@gmail.com">rlstudio.dev@gmail.com</a></p>
+<p class="meta">The rest of this page is the app's <strong>Privacy Policy</strong>. Effective date: 7 August 2026 · App: Pop Rush (<code>com.rlinteractive.poprush</code>) · Contact: <a href="mailto:rlstudio.dev@gmail.com">rlstudio.dev@gmail.com</a></p>
 
 <h2>Summary</h2>
-<p>The core game requires no sign-in, and the game data you create (scores, progress, settings) stays on your device. The app shows <strong>ads</strong> served by <strong>Google AdMob</strong>; to serve and measure ads, AdMob and its partners process a <strong>device advertising identifier</strong> and ad-interaction data. That is the only data that leaves your device by default. Optional <strong>Online Features</strong> (leaderboards and Squads) are <strong>off by default</strong>; turning them on signs you in with <strong>Google Play Games</strong> — nothing networks until you explicitly enable them in-app.</p>
+<p>The core game requires no sign-in, and the game data you create (scores, progress, settings) stays on your device. The app shows <strong>ads</strong> served by <strong>Google AdMob</strong>; to serve and measure ads, AdMob and its partners process a <strong>device advertising identifier</strong> and ad-interaction data. Advertising is the only thing that sends data off your device without you choosing to.</p>
+<p>Two things are <strong>off unless you turn them on</strong>:</p>
+<ul>
+  <li><strong>Gameplay analytics</strong> — the app includes <strong>Google Analytics for Firebase</strong> (a Google service). Analytics collection ships <strong>disabled</strong> and no gameplay event is sent to Google until you explicitly allow it in the app. See <a href="#analytics">Analytics</a>.</li>
+  <li><strong>Online Features</strong> — leaderboards and Squads. Turning them on signs you in with <strong>Google Play Games</strong> and connects to our backend; nothing networks until you explicitly enable them in-app.</li>
+</ul>
+<p>Pop Rush is currently released on <strong>Android only</strong>. Where this policy mentions iOS, it describes what will apply if and when an iOS version ships.</p>
 
 <h2>What the app stores on your device</h2>
 <ul>
   <li><strong>Game progress &amp; settings</strong> — best scores, campaign stars/unlocks, coins, and your preferences (sound, language). Stored locally via the OS (Unity PlayerPrefs).</li>
-  <li><strong>Gameplay analytics (local only)</strong> — the app writes anonymous gameplay events (e.g. a mode started, a stage cleared/failed) to a file on the device to help us understand difficulty and pacing. These events contain <strong>no personal information</strong> and are <strong>never sent off the device</strong>. They can be turned off in the app.</li>
+  <li><strong>Local gameplay event log</strong> — the app writes anonymous gameplay events (e.g. a mode started, a stage cleared or failed, a run ended, an ad offered or completed) as one line each to a file in the app's own private storage. This file contains <strong>no personal information</strong> and <strong>is never uploaded</strong> — we have no server that receives it. It is <strong>separate</strong> from the Firebase analytics described under <a href="#analytics">Analytics</a>, which sends a smaller subset of the same events to Google, and only if you allow it.</li>
 </ul>
 <p>This on-device data is removed when you uninstall the app or clear its data.</p>
 
 <h2>What we do not do</h2>
 <ul>
-  <li>We do <strong>not</strong> collect your real name, email, contacts, location, or photos. (If you enable Online Features, you sign in with Google Play Games and your Google Play Games display name becomes your online name — see <em>Online features &amp; Squads</em>.)</li>
+  <li>We do <strong>not</strong> collect your real name, email, contacts, or photos, and the app requests <strong>no location permission</strong>. (If you enable Online Features, you sign in with Google Play Games and your Google Play Games display name becomes your online name — see <em>Online features &amp; Squads</em>. Google may derive an approximate, country/region-level location from your IP address for ads and, if you enable it, analytics — see the sections below.)</li>
   <li>We do <strong>not</strong> sell your data, and there are <strong>no purchases</strong> in the app.</li>
-  <li>We do <strong>not</strong> use any analytics or tracking SDK other than the advertising SDK described below.</li>
+  <li>We do <strong>not</strong> put your name, your email address, your Google Play Games player ID, your online profile ID, or any free text you type (such as your display name) into analytics events. Analytics events carry only a fixed set of gameplay values — see <a href="#analytics">Analytics</a>.</li>
+  <li>Apart from the Google services described in this policy (AdMob, Google Analytics for Firebase, Google Play Games Services and Google Play's in-app review prompt) and our online backend (PlayFab), the app contains <strong>no</strong> other analytics, attribution, crash-reporting or tracking SDK.</li>
   <li>We do <strong>not</strong> use cookies or web tracking.</li>
 </ul>
+
+<h3 id="analytics">Analytics (Google Analytics for Firebase)</h3>
+<p>Pop Rush includes <strong>Google Analytics for Firebase</strong>, an analytics service provided by <strong>Google</strong>. We use it to understand how the game behaves and how it is played: whether it runs stably, how far players get through the campaign, which stages are too hard, how long a session lasts, and which modes and features actually get used.</p>
+
+<p><strong>It is off until you allow it.</strong> The app ships with Firebase analytics collection <strong>disabled</strong> at the operating-system level, so nothing is collected even before the game's own code runs. Collection is enabled only after you give <strong>explicit consent to analytics</strong> through an in-app control; the app then records that choice and tells the Google SDK about it. Consent you give to <em>ads</em> is deliberately <strong>not</strong> reused as consent to analytics — they are separate purposes and we treat them separately. <strong>If your version of the app has never asked you for analytics consent, analytics collection is off and no gameplay event is sent to Google.</strong></p>
+
+<p><strong>What is sent, if you allow it.</strong> Only a fixed, short list of gameplay events:</p>
+<ul>
+  <li><code>mode_start</code> / <code>mode_end</code> — a run started or finished. Values: which mode (<code>journey</code>, <code>time_attack</code>, <code>survival</code>, <code>instinct</code>, <code>versus</code>), and, where they apply to that mode, the campaign stage number, the chosen difficulty (<code>easy</code>/<code>normal</code>/<code>hard</code>), whether it was the first game on this install, how the run ended (<code>cleared</code>, <code>completed</code>, <code>times_up</code>, <code>out_of_lives</code>, <code>red_tap</code>, <code>abandoned</code>), the score, and the duration in seconds.</li>
+  <li><code>stage_clear</code> / <code>stage_fail</code> — a campaign stage was cleared or failed, with the stage number.</li>
+  <li><code>ad_clicked</code>, <code>reward_completed</code>, <code>interstitial_shown</code> — you chose to open an optional rewarded ad, finished watching one, or were shown an interstitial. The first two also carry the place in the game it was offered (<code>continue</code>, <code>energy</code>, <code>skip</code> or <code>double_coins</code>); <code>interstitial_shown</code> carries no values at all.</li>
+</ul>
+<p>That is the whole list. Everything else the game records stays in the on-device log described above and is never sent.</p>
+
+<p><strong>What we do not send.</strong> These events contain no email address, no real name, no Google Play Games player ID, no online profile ID, no display name, and no free text you type. They carry only the bounded gameplay values listed above.</p>
+
+<p><strong>What Google may process automatically.</strong> When analytics collection is enabled, the Google SDK also processes technical information on its own, independently of the events we send. According to Google, this includes an <strong>app-instance identifier</strong> (a random ID for one installation of the app), a <strong>device advertising identifier</strong>, device model and operating system, app version, session counts and duration, and an <strong>approximate, country/region-level location</strong> derived from your IP address. This data is processed by Google under the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>; see also <a href="https://firebase.google.com/support/privacy">Privacy and Security in Firebase</a> and <a href="https://support.google.com/firebase/answer/6318039">Firebase data collection</a>. We have configured the app so that analytics data is <strong>not</strong> used to personalise ads.</p>
+
+<p><strong>Turning it off.</strong> Because collection only ever begins after you explicitly allow it, declining — or simply never being asked — means nothing is collected. If you have allowed it, you can withdraw that permission using the same in-app control, which stops collection immediately and keeps it off on later launches. Uninstalling the app, or clearing its data in Android Settings ▸ Apps ▸ Pop Rush ▸ Storage, also resets the app-instance identifier and removes the local log.</p>
 
 <h3>Advertising (Google AdMob)</h3>
 <p>Pop Rush is ad-supported. Ads are served by <strong>Google AdMob</strong>:</p>
 <ul>
   <li>The app shows <strong>rewarded</strong> ads (optional, player-initiated: refill campaign energy, continue a stage, or double earned coins — you only watch one if you tap it) and <strong>interstitial</strong> ads (occasionally between arcade-mode games — never during active gameplay).</li>
   <li>AdMob and its partners may collect and process a <strong>device advertising identifier</strong> and related ad-interaction / diagnostic data to serve and measure ads, per <a href="https://support.google.com/admob/answer/6128543">Google's Advertising Policies</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. This data is shared with Google.</li>
-  <li>On iOS (when an iOS build ships), the app will request <strong>App Tracking Transparency</strong> permission; declining still shows (non-personalized) ads.</li>
-  <li>This is the only data that leaves the device in the default configuration.</li>
+  <li>If an iOS version ships, the app will request <strong>App Tracking Transparency</strong> permission there; declining still shows (non-personalized) ads.</li>
+  <li>In the app's default state — ads on, analytics off, Online Features off — this advertising data is the only data that leaves your device.</li>
 </ul>
 
 <h3>Online features &amp; Squads (optional, off by default)</h3>
@@ -59,7 +85,7 @@
   <li><strong>Your best scores per mode</strong> — visible on leaderboards you participate in.</li>
   <li><strong>Squad membership</strong> — the squad invite code and your membership/scores, visible to the members of that squad.</li>
 </ul>
-<p>PlayFab processes this data on our behalf; see the <a href="https://privacy.microsoft.com/privacystatement">Microsoft Privacy Statement</a>. Pop Rush never shares your data without your action.</p>
+<p>PlayFab processes this data on our behalf; see the <a href="https://privacy.microsoft.com/privacystatement">Microsoft Privacy Statement</a>. None of the data in this section is shared with anyone unless you turn Online Features on.</p>
 
 <h2 id="delete">Deleting your data</h2>
 <p>Most Pop Rush data lives only on your device: uninstalling the app, or clearing its data in
