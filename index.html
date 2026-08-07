@@ -20,15 +20,15 @@
 <body>
 <h1>Pop Rush</h1>
 <p><strong>Pop Rush</strong> is a fast, colorful arcade reflex game for Android — pop the called color, keep the combo alive, and play across Time Attack, Survival, Instinct, a 100-stage Journey campaign, and local split-screen Versus. It's free, with optional online leaderboards and Squads. Questions or support: <a href="mailto:rlstudio.dev@gmail.com">rlstudio.dev@gmail.com</a>.</p>
-<p class="meta">The rest of this page is the app's <strong>Privacy Policy</strong>. Effective date: 16 July 2026 · App: Pop Rush (<code>com.rlinteractive.poprush</code>) · Contact: <a href="mailto:rlstudio.dev@gmail.com">rlstudio.dev@gmail.com</a></p>
+<p class="meta">The rest of this page is the app's <strong>Privacy Policy</strong>. Effective date: 7 August 2026 · App: Pop Rush (<code>com.rlinteractive.poprush</code>) · Contact: <a href="mailto:rlstudio.dev@gmail.com">rlstudio.dev@gmail.com</a></p>
 
 <h2>Summary</h2>
-<p>The core game requires no sign-in, and the game data you create (scores, progress, settings) stays on your device. The app shows <strong>ads</strong> served by <strong>Google AdMob</strong>; to serve and measure ads, AdMob and its partners process a <strong>device advertising identifier</strong> and ad-interaction data. That is the only data that leaves your device by default. Optional <strong>Online Features</strong> (leaderboards and Squads) are <strong>off by default</strong>; turning them on signs you in with <strong>Google Play Games</strong> — nothing networks until you explicitly enable them in-app.</p>
+<p>The core game requires no sign-in, and the game data you create (scores, progress, settings) stays on your device. The app shows <strong>ads</strong> served by <strong>Google AdMob</strong>; to serve and measure ads, AdMob and its partners process a <strong>device advertising identifier</strong> and ad-interaction data. We also use <strong>Google Analytics for Firebase</strong> for gameplay statistics — it is <strong>off until you turn it on</strong> in Settings (see <em>Analytics</em> below). Optional <strong>Online Features</strong> (leaderboards and Squads) are <strong>off by default</strong>; turning them on signs you in with <strong>Google Play Games</strong> — nothing networks until you explicitly enable them in-app.</p>
 
 <h2>What the app stores on your device</h2>
 <ul>
   <li><strong>Game progress &amp; settings</strong> — best scores, campaign stars/unlocks, coins, and your preferences (sound, language). Stored locally via the OS (Unity PlayerPrefs).</li>
-  <li><strong>Gameplay analytics (local only)</strong> — the app writes anonymous gameplay events (e.g. a mode started, a stage cleared/failed) to a file on the device to help us understand difficulty and pacing. These events contain <strong>no personal information</strong> and are <strong>never sent off the device</strong>. They can be turned off in the app.</li>
+  <li><strong>Gameplay analytics</strong> — the app records gameplay events (e.g. a mode started, a stage cleared/failed) to help us understand difficulty and pacing. These events contain <strong>no personal information</strong>. A full copy is always written to a file <strong>on your device</strong>; a small subset is also sent to Google Analytics for Firebase — see <em>Analytics</em> below.</li>
 </ul>
 <p>This on-device data is removed when you uninstall the app or clear its data.</p>
 
@@ -36,8 +36,17 @@
 <ul>
   <li>We do <strong>not</strong> collect your real name, email, contacts, location, or photos. (If you enable Online Features, you sign in with Google Play Games and your Google Play Games display name becomes your online name — see <em>Online features &amp; Squads</em>.)</li>
   <li>We do <strong>not</strong> sell your data, and there are <strong>no purchases</strong> in the app.</li>
-  <li>We do <strong>not</strong> use any analytics or tracking SDK other than the advertising SDK described below.</li>
+  <li>We do <strong>not</strong> send your name, your Google Play Games identity, your player id, or any free-form text you type to our analytics. Analytics events carry only a fixed set of gameplay values (which mode, which stage, a score, a duration) — see <em>Analytics</em> below.</li>
   <li>We do <strong>not</strong> use cookies or web tracking.</li>
+</ul>
+
+<h3>Analytics (Google Analytics for Firebase)</h3>
+<p>We use <strong>Google Analytics for Firebase</strong> to understand how the game is played — which modes people choose, how long a run lasts, and where the campaign gets too hard. It is the only analytics SDK in the app.</p>
+<p><strong>It is off until you turn it on.</strong> The app ships with Firebase analytics collection <strong>disabled</strong> in every country, and nothing is sent unless you switch on <strong>Settings ▸ Privacy ▸ Help improve Pop Rush</strong>. Turning it off again stops collection immediately and it stays off.</p>
+<ul>
+  <li><strong>What is sent</strong> — a fixed, small set of gameplay events: a run started, a run ended, a campaign stage cleared or failed, an ad offered, a rewarded ad completed, an ad shown. Each carries only bounded values such as the game mode, the difficulty, the stage number, a score, and a duration in seconds.</li>
+  <li><strong>What is never sent</strong> — your name or Google Play Games display name, your player id or any account identifier, your friend code, squad codes, anything you type, and any on-screen text.</li>
+  <li>Firebase assigns a random, app-specific instance identifier so events from one installation can be counted together; it is not linked to your Google account by us, and it is reset if you clear the app's data or uninstall. See <a href="https://firebase.google.com/support/privacy">Firebase privacy</a> and <a href="https://policies.google.com/technologies/partner-sites">how Google uses data from partner sites</a>.</li>
 </ul>
 
 <h3>Advertising (Google AdMob)</h3>
@@ -46,7 +55,7 @@
   <li>The app shows <strong>rewarded</strong> ads (optional, player-initiated: refill campaign energy, continue a stage, or double earned coins — you only watch one if you tap it) and <strong>interstitial</strong> ads (occasionally between arcade-mode games — never during active gameplay).</li>
   <li>AdMob and its partners may collect and process a <strong>device advertising identifier</strong> and related ad-interaction / diagnostic data to serve and measure ads, per <a href="https://support.google.com/admob/answer/6128543">Google's Advertising Policies</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. This data is shared with Google.</li>
   <li>On iOS (when an iOS build ships), the app will request <strong>App Tracking Transparency</strong> permission; declining still shows (non-personalized) ads.</li>
-  <li>This is the only data that leaves the device in the default configuration.</li>
+  <li>Advertising data and the analytics described above are the only data that leave the device unless you turn on Online Features.</li>
 </ul>
 
 <h3>Online features &amp; Squads (optional, off by default)</h3>
@@ -65,15 +74,27 @@
 <p>Most Pop Rush data lives only on your device: uninstalling the app, or clearing its data in
 Android Settings ▸ Apps ▸ Pop Rush ▸ Storage, permanently removes your scores, progress, settings,
 and the local analytics file.</p>
-<p>If you turned on <strong>Online Features</strong>, an online profile (a random app-generated identifier
-linked to your Google Play Games account, your display name, your best scores, and any squad membership)
-is stored on our backend (PlayFab). To delete that online data and the associated account:</p>
-<ul>
-  <li><strong>In the app:</strong> turn <em>Online Features</em> off in Settings to stop all syncing, then</li>
-  <li><strong>Request deletion:</strong> email <a href="mailto:rlstudio.dev@gmail.com">rlstudio.dev@gmail.com</a>
-      from the address you contact us with, or include your in-game nickname, and we will delete your online
-      profile and associated data within 30 days.</li>
-</ul>
+<p>If you turned on <strong>Online Features</strong>, an online profile is stored on our backend
+(PlayFab): a random app-generated identifier, the link to your Google Play Games account, your
+display name, and your best scores.</p>
+<p><strong>To request deletion, email
+<a href="mailto:rlstudio.dev@gmail.com">rlstudio.dev@gmail.com</a></strong> and include your
+<strong>friend code</strong> and your current <strong>display name</strong> — both shown in the app on
+your Online profile — together with any other details that profile shows. You can request deletion at
+any time, including if you no longer have the app installed or cannot open it. Nothing else is
+required of you.</p>
+<p><strong>A display name on its own is not proof that an account is yours.</strong> Display names are
+visible to other players on leaderboards, so we cannot accept one as identification. We may ask you for
+further details that only the account holder would have, and we will decline any request we cannot
+reasonably verify.</p>
+<p><em>Optional, only if you can:</em> if you are currently a member of a Squad, leaving the Squad
+before requesting deletion may help remove your squad membership immediately. If you cannot do so,
+simply mention it in your deletion request. Turning <em>Online Features</em> off in Settings stops
+further syncing, but it is not required and does not delete anything on its own.</p>
+<p>For a verified request we delete, within 30 days, your online profile, its Google Play Games link,
+your display name, and your best scores — which also removes you from the leaderboards. Squad
+membership is removed when you leave the Squad; if you were unable to leave, tell us in your request
+and we will look at it as part of handling that request.</p>
 <p>There are no purchases and no payment data to delete.</p>
 
 <h2>Children</h2>
